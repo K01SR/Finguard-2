@@ -1,0 +1,14 @@
+services:
+  finguard:
+    build: .
+    container_name: finguard-app
+    ports:
+      - "80:8000"
+      - "8000:8000"
+    environment:
+      - DUCKDNS_DOMAIN=finguarddd
+      - DUCKDNS_TOKEN=${DUCKDNS_TOKEN:-}
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+    restart: unless-stopped
